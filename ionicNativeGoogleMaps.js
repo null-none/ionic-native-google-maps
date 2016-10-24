@@ -1,6 +1,6 @@
-angular.module('ionicCordovaGooglemaps', [])
+angular.module('ionicNativeGoogleMaps', [])
 
-.directive('googleMap', function() {
+.directive('nativeGoogleMap', function() {
   return {
     restrict: 'A',
     scope: {

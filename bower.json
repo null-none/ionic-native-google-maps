@@ -1,10 +1,10 @@
 {
-  "name": "ionic-cordova-google-maps",
+  "name": "ionic-native-google-maps",
   "authors": [
     "Dmitry Kalinin <dmitry.kalinin.email@gmail.com>"
   ],
   "description": "Ionic module for render native google maps",
-  "main": "ionicCordovaGooglemaps.js",
+  "main": "ionicNativeGoogleMaps.js",
   "version": "0.0.1",
   "keywords": [
     "ionic",
