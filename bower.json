@@ -1,0 +1,28 @@
+{
+  "name": "ionic-cordova-google-maps",
+  "authors": [
+    "Dmitry Kalinin <dmitry.kalinin.email@gmail.com>"
+  ],
+  "description": "Ionic module for render native google maps",
+  "main": "ionicCordovaGooglemaps.js",
+  "version": "0.0.1",
+  "keywords": [
+    "ionic",
+    "google",
+    "maps",
+    "native",
+    "google",
+    "maps",
+    "cordova"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/null-none/ionicCordovaGoogleMaps",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
