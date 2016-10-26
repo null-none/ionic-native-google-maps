@@ -15,7 +15,7 @@ angular.module('ionicNativeGoogleMaps', [])
               lat: scope.$root.lat,
               lng: scope.$root.lng
             },
-            zoom: 17,
+            zoom: scope.$root.map.zoom,
             tilt: 60,
             bearing: 140,
             duration: 5000
