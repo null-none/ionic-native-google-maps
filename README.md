@@ -17,6 +17,19 @@ bower install ionic-native-google-maps
 
 ```
 
+
+```js
+$rootScope.lat = 43.2312;
+$rootScope.lng = 12.2344;
+$rootScope.map = {
+  center: {
+    latitude: 43.2312,
+    longitude: 12.2344,
+  },
+  zoom: 16,
+};
+```
+
 ```html
 <div native-google-map height="400px" ></div>
 ```

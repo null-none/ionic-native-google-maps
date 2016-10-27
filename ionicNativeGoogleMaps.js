@@ -1,6 +1,46 @@
 angular.module('ionicNativeGoogleMaps', [])
 
-.directive('nativeGoogleMap', function() {
+
+.factory('serviceGoogleMap', function() {
+  function animateCamera(map, lat, lng, zoom) {
+    if (map) {
+      if (parseFloat(lat) && parseFloat(lng)) {
+        map.animateCamera({
+          target: {
+            lat: lat,
+            lng: lng
+          },
+          zoom: zoom,
+          duration: 5000
+        }, function() {});
+      }
+    }
+  }
+
+  function addMarker(map, latitude, longitude, icon, title) {
+    if (map) {
+      map.addMarker({
+        position: {
+          lat: latitude,
+          lng: longitude
+        },
+        icon: {
+          'url': icon
+        },
+        title: title,
+        animation: plugin.google.maps.Animation.BOUNCE
+      }, function(marker) {
+        marker.showInfoWindow();
+      });
+    }
+  }
+  return {
+    animateCamera: animateCamera,
+    addMarker: addMarker
+  }
+})
+
+.directive('nativeGoogleMap', ['serviceGoogleMap', function(serviceGoogleMap) {
   return {
     restrict: 'A',
     scope: {
@@ -8,61 +48,21 @@ angular.module('ionicNativeGoogleMaps', [])
     },
     link: function(scope, element, attrs) {
       var map = null;
-      scope.$root.$watchGroup(['lat', 'lng'], function(newValues, oldValues, scope) {
-        if (map) {
-          map.animateCamera({
-            target: {
-              lat: scope.$root.lat,
-              lng: scope.$root.lng
-            },
-            zoom: scope.$root.map.zoom,
-            tilt: 60,
-            bearing: 140,
-            duration: 5000
-          }, function() {});
-        }
-      });
-
-      function marker(map, item) {
-        map.addMarker({
-          position: {
-            lat: item.latitude,
-            lng: item.longitude
-          },
-          icon: {
-            'url': item.icon
-          },
-          title: item.title,
-          snippet: item.latitude + ' , ' + item.longitude,
-          animation: plugin.google.maps.Animation.BOUNCE
-        }, function(marker) {
-          marker.showInfoWindow();
-        });
-      }
 
       function triggerMapReady(map) {
         scope.mapReady({
           map: map
         });
-
-        map.animateCamera({
-          target: {
-            lat: scope.$root.map.center.latitude,
-            lng: scope.$root.map.center.longitude
-          },
-          zoom: scope.$root.map.zoom,
-          tilt: 60,
-          bearing: 140,
-          duration: 5000
-        }, function() {});
-
+        serviceGoogleMap.animateCamera(map, scope.$root.lat, scope.$root.lng, scope.$root.map.zoom);
         if (attrs.hasOwnProperty('height')) {
           element.css('height', attrs.height)
         }
-        scope.$root.markers.forEach(function(item, i, arr) {
-          marker(map, item);
+        scope.$root.$watchGroup(['lat', 'lng'], function(newValues, oldValues, scope) {
+          serviceGoogleMap.animateCamera(map, scope.$root.lat, scope.$root.lng, scope.$root.map.zoom);
         });
+        serviceGoogleMap.animateCamera(map, scope.$root.map.center.latitude, scope.$root.map.center.longitude, scope.$root.map.zoom);
       }
+
       document.addEventListener("deviceready", function() {
         var mapParams = {
           'mapType': plugin.google.maps.MapTypeId.ROADMAP,
@@ -84,4 +84,4 @@ angular.module('ionicNativeGoogleMaps', [])
       }, false);
     }
   };
-});
+}]);
