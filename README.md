@@ -25,8 +25,7 @@ $rootScope.markers = [
   {
     title: 'Test',
     latitude: 43.2312,
-    longitude: 12.2344,
-    icon: 'images/icon.png'
+    longitude: 12.2344
   }
 ]
 $rootScope.map = {
@@ -43,7 +42,6 @@ $rootScope.map = {
   <div native-google-map-marker ng-repeat="marker in markers"
                                 data-latitude="{{marker.latitude}}"
                                 data-longitude="{{marker.longitude}}"
-                                data-icon="{{marker.icon}}"
                                 data-title="{{marker.title}}">
   </div>
 </div>
