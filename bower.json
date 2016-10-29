@@ -16,7 +16,7 @@
     "cordova"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/null-none/ionicCordovaGoogleMaps",
+  "homepage": "https://github.com/null-none/ionic-native-google-maps",
   "private": false,
   "ignore": [
     "**/.*",
