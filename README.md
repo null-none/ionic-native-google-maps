@@ -1,7 +1,7 @@
 # ionicNativeGoogleMaps
 Directive for render native google maps for ionic
 
-[![Bower version](https://badge.fury.io/bo/ionic-native-google-maps.svg)](https://github.com/null-none/ionic-localstorage)
+[![Bower version](https://badge.fury.io/bo/ionic-native-google-maps.svg)](https://github.com/null-none/ionic-native-google-maps)
 
 ## Install
 
