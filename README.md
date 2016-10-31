@@ -1,6 +1,8 @@
 # ionicNativeGoogleMaps
 Directive for render native google maps for ionic
 
+[![Bower version](https://badge.fury.io/bo/ionic-native-google-maps.svg)](https://github.com/null-none/ionic-localstorage)
+
 ## Install
 
 ```bash
@@ -25,7 +27,8 @@ $rootScope.markers = [
   {
     title: 'Test',
     latitude: 43.2312,
-    longitude: 12.2344
+    longitude: 12.2344,
+    icon: 'img/test.png'
   }
 ]
 $rootScope.map = {
@@ -42,6 +45,7 @@ $rootScope.map = {
   <div native-google-map-marker ng-repeat="marker in markers"
                                 data-latitude="{{marker.latitude}}"
                                 data-longitude="{{marker.longitude}}"
+                                data-icon="{{marker.icon}}"
                                 data-title="{{marker.title}}">
   </div>
 </div>

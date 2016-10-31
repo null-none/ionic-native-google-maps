@@ -18,12 +18,15 @@ angular.module('ionicNativeGoogleMaps', [])
     }
   }
 
-  function addMarker(map, latitude, longitude, title) {
+  function addMarker(map, latitude, longitude, icon, title) {
     if (map) {
       map.addMarker({
         position: {
           lat: latitude,
           lng: longitude
+        },
+        icon: {
+          url: icon
         },
         title: title,
         animation: plugin.google.maps.Animation.BOUNCE
@@ -90,7 +93,7 @@ angular.module('ionicNativeGoogleMaps', [])
     },
     link: function(scope, element, attrs) {
       document.addEventListener("deviceready", function() {
-        serviceGoogleMap.addMarker($window.map, attrs.latitude, attrs.longitude, attrs.title);
+        serviceGoogleMap.addMarker($window.map, attrs.latitude, attrs.longitude, attrs.icon, attrs.title);
       }, false);
     }
   };
