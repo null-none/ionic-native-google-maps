@@ -10,6 +10,11 @@ cordova plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID="YOU
 bower install ionic-native-google-maps
 ```
 
+```bash
+cordova plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID="YOUR_ANDROID_API_KEY_IS_HERE" --variable API_KEY_FOR_IOS="YOUR_IOS_API_KEY_IS_HERE"
+bower install ionic-native-google-maps
+```
+
 ## Example
 
 ```html
@@ -21,17 +26,18 @@ bower install ionic-native-google-maps
 
 
 ```js
-$rootScope.lat = 43.2312;
-$rootScope.lng = 12.2344;
-$rootScope.markers = [
+$scope.lat = 43.2312;
+$scope.lng = 12.2344;
+$scope.markers = [
   {
     title: 'Test',
+    id: 1,
     latitude: 43.2312,
     longitude: 12.2344,
     icon: 'img/test.png'
   }
 ]
-$rootScope.map = {
+$scope.map = {
   center: {
     latitude: 43.2312,
     longitude: 12.2344,
@@ -41,9 +47,14 @@ $rootScope.map = {
 ```
 
 ```html
-<div native-google-map height="100%">
+<div native-google-map
+     data-latitude="{{map.center.latitude}}"
+     data-longitude="{{map.center.longitude}}"
+     data-zoom="{{map.zoom}}"
+     height="100%">
   <div native-google-map-marker ng-repeat="marker in markers"
                                 data-latitude="{{marker.latitude}}"
+                                data-id="{{marker.id}}"
                                 data-longitude="{{marker.longitude}}"
                                 data-icon="{{marker.icon}}"
                                 data-title="{{marker.title}}">

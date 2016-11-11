@@ -1,24 +1,30 @@
 angular.module('ionicNativeGoogleMaps', [])
 
 
-.factory('serviceGoogleMap', function() {
+.factory('serviceGoogleMap', function($rootScope, API, Loading) {
+
 
   function animateCamera(map, lat, lng, zoom) {
     if (map) {
-      if (parseFloat(lat) && parseFloat(lng)) {
-        map.animateCamera({
-          target: {
-            lat: lat,
-            lng: lng
-          },
-          zoom: zoom,
-          duration: 5000
-        }, function() {});
-      }
+      map.animateCamera({
+        target: new plugin.google.maps.LatLng(lat, lng),
+        zoom: zoom,
+        duration: 5000
+      }, function() {});
     }
   }
 
-  function addMarker(map, latitude, longitude, icon, title) {
+  function moveCamera(map, lat, lng, zoom) {
+    if (map) {
+      map.moveCamera({
+        target: new plugin.google.maps.LatLng(lat, lng),
+        zoom: zoom,
+        duration: 5000
+      }, function() {});
+    }
+  }
+
+  function addMarker(map, latitude, longitude, icon, title, id) {
     if (map) {
       map.addMarker({
         position: {
@@ -29,15 +35,17 @@ angular.module('ionicNativeGoogleMaps', [])
           url: icon
         },
         title: title,
+        myMsg: id,
         animation: plugin.google.maps.Animation.BOUNCE
       }, function(marker) {
-        marker.showInfoWindow();
       });
     }
   }
+
   return {
-    animateCamera: animateCamera,
-    addMarker: addMarker
+    moveCamera: moveCamera,
+    addMarker: addMarker,
+    animateCamera: animateCamera
   }
 })
 
@@ -49,17 +57,16 @@ angular.module('ionicNativeGoogleMaps', [])
     },
     link: function(scope, element, attrs) {
       $window.map = null;
-      $window.markers = [];
 
       function triggerMapReady(map) {
         scope.mapReady({
           map: map
         });
-        serviceGoogleMap.animateCamera(map, scope.$root.lat, scope.$root.lng, scope.$root.map.zoom);
+        serviceGoogleMap.moveCamera(map, attrs.latitude, attrs.longitude, attrs.zoom);
         if (attrs.hasOwnProperty('height')) {
           element.css('height', attrs.height)
         }
-        serviceGoogleMap.animateCamera(map, scope.$root.map.center.latitude, scope.$root.map.center.longitude, scope.$root.map.zoom);
+        serviceGoogleMap.moveCamera(map, attrs.latitude, attrs.longitude, attrs.zoom);
       }
 
       document.addEventListener("deviceready", function() {
@@ -93,7 +100,7 @@ angular.module('ionicNativeGoogleMaps', [])
     },
     link: function(scope, element, attrs) {
       document.addEventListener("deviceready", function() {
-        serviceGoogleMap.addMarker($window.map, attrs.latitude, attrs.longitude, attrs.icon, attrs.title);
+        serviceGoogleMap.addMarker($window.map, attrs.latitude, attrs.longitude, attrs.icon, attrs.title, attrs.id);
       }, false);
     }
   };

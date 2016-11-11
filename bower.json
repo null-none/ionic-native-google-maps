@@ -1,11 +1,11 @@
 {
   "name": "ionic-native-google-maps",
+  "version": "1.0.3",
   "authors": [
     "Dmitry Kalinin <dmitry.kalinin.email@gmail.com>"
   ],
   "description": "Ionic module for render native google maps",
   "main": "ionicNativeGoogleMaps.js",
-  "version": "1.0.2",
   "keywords": [
     "ionic",
     "google",
