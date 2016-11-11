@@ -10,11 +10,6 @@ cordova plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID="YOU
 bower install ionic-native-google-maps
 ```
 
-```bash
-cordova plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID="YOUR_ANDROID_API_KEY_IS_HERE" --variable API_KEY_FOR_IOS="YOUR_IOS_API_KEY_IS_HERE"
-bower install ionic-native-google-maps
-```
-
 ## Example
 
 ```html
