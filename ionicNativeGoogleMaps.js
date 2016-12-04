@@ -1,7 +1,7 @@
 angular.module('ionicNativeGoogleMaps', [])
 
 
-.factory('serviceGoogleMap', function($rootScope, API, Loading) {
+.factory('serviceGoogleMap', function($rootScope) {
 
 
   function animateCamera(map, lat, lng, zoom) {
