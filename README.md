@@ -29,6 +29,7 @@ $scope.markers = [
     id: 1,
     latitude: 43.2312,
     longitude: 12.2344,
+    visible: true,
     icon: 'img/test.png'
   }
 ]
@@ -52,6 +53,7 @@ $scope.map = {
                                 data-id="{{marker.id}}"
                                 data-longitude="{{marker.longitude}}"
                                 data-icon="{{marker.icon}}"
+                                data-visible="{{marker.visible}}"
                                 data-title="{{marker.title}}">
   </div>
 </div>

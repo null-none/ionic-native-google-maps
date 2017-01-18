@@ -24,7 +24,7 @@ angular.module('ionicNativeGoogleMaps', [])
     }
   }
 
-  function addMarker(map, latitude, longitude, icon, title, id) {
+  function addMarker(map, latitude, longitude, icon, title, id, visible) {
     if (map) {
       map.addMarker({
         position: {
@@ -36,6 +36,7 @@ angular.module('ionicNativeGoogleMaps', [])
         },
         title: title,
         myMsg: id,
+        visible: visible,
         animation: plugin.google.maps.Animation.BOUNCE
       }, function(marker) {
       });
@@ -100,7 +101,7 @@ angular.module('ionicNativeGoogleMaps', [])
     },
     link: function(scope, element, attrs) {
       document.addEventListener("deviceready", function() {
-        serviceGoogleMap.addMarker($window.map, attrs.latitude, attrs.longitude, attrs.icon, attrs.title, attrs.id);
+        serviceGoogleMap.addMarker($window.map, attrs.latitude, attrs.longitude, attrs.icon, attrs.title, attrs.id, attrs.visible);
       }, false);
     }
   };
